@@ -73,11 +73,19 @@ if __name__ == "__main__":
             print "Error: unable to start keyboard listen thread."
 
     rospy.init_node("kitti_player")
+    
+    '''
     # Publisher of Kitti raw data: point cloud & image & ground truth
+    '''
+    # 发布KITTI点云原始数据
     pub_points = rospy.Publisher("/kitti/points_raw", PointCloud2, queue_size=1000000)
+    # 发布点云着色结果
     pub_points_rgb = rospy.Publisher("/kitti/points_rgb", PointCloud2, queue_size=1000000)
+    # 发布KITTI图像(左相机)原始数据
     pub_img = rospy.Publisher("/kitti/img_raw", Image, queue_size=1000000)
+    # 发布点云投影到图像的结果
     pub_img_depth = rospy.Publisher("/kitti/img_depth", Image, queue_size=1000000)
+    # 
     ground_truth_pub_ = rospy.Publisher("/kitti/bb_raw", PoseArray, queue_size=1000000)
 
     object_marker_pub_ = rospy.Publisher("/kitti/bb_marker", MarkerArray, queue_size=1000000)
