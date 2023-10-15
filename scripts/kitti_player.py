@@ -73,7 +73,7 @@ if __name__ == "__main__":
             print "Error: unable to start keyboard listen thread."
 
     rospy.init_node("kitti_player")
-    
+
     '''
     # Publisher of Kitti raw data: point cloud & image & ground truth
     '''
@@ -85,9 +85,9 @@ if __name__ == "__main__":
     pub_img = rospy.Publisher("/kitti/img_raw", Image, queue_size=1000000)
     # 发布点云投影到图像的结果
     pub_img_depth = rospy.Publisher("/kitti/img_depth", Image, queue_size=1000000)
-    # 
+    # ???
     ground_truth_pub_ = rospy.Publisher("/kitti/bb_raw", PoseArray, queue_size=1000000)
-
+    # ???
     object_marker_pub_ = rospy.Publisher("/kitti/bb_marker", MarkerArray, queue_size=1000000)
 
     # Publisher of bounding box corner vertex
@@ -207,6 +207,9 @@ if __name__ == "__main__":
     if use_gt:
         bounding_boxes, tracklet_counter = Preprocessor.read_label_from_xml(tracklet_file, care_objects)
 
+    """
+    # 逐帧播放处理数据，类似rospy.spin()
+    """
     idx = 0
     # support circular access ...-2,-1,0,1,2...
     while idx < len(bin_files):
